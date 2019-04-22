@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gaeainfo.demo.mapper.mapper2.UsersMapper2" >   <!--指定mapper位置-->
+
+    <resultMap id="BaseResultMap" type="com.gaeainfo.demo.pojo.UsersDO" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="age" property="age" javaType="INTEGER"/>
+    </resultMap>
+    
+    <sql id="Base_Column_List" >id, name, age</sql>
+
+    <select id="findAll" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM users
+    </select>
+    
+    <insert id="addOne">
+        INSERT INTO users(id,name,age) VALUES (#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{age,jdbcType=INTEGER})
+    </insert>
+
+
+</mapper>
